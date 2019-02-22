@@ -1,0 +1,12 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<BC4JConfig version="11.1" xmlns="http://xmlns.oracle.com/bc4j/configuration">
+   <AppModuleConfigBag ApplicationName="br.com.waslleysouza.model.HrAppModule">
+      <AppModuleConfig name="169121A8AF9" DBconnection="java:comp/env/jdbc/HrConnDS" BC4JConfigName="HrAppModuleShared" DeployPlatform="LOCAL" JDBCName="HrConn" jbo.project="br.com.waslleysouza.model.Model" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory" IsLazyLoadingTrue="true" ApplicationName="br.com.waslleysouza.model.HrAppModule">
+         <AM-Pooling jbo.ampool.isuseexclusive="false" jbo.ampool.resetnontransactionalstate="false" jbo.ampool.dynamicjdbccredentials="false" jbo.ampool.maxpoolsize="1"/>
+         <Database jbo.SQLBuilder="Oracle" jbo.TypeMapEntries="Oracle" jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="br.com.waslleysouza.model.HrAppModule"/>
+         <Tester FullProxyInterfaceName="br.com.waslleysouza.model.common.HrAppModule"/>
+         <Custom JDBCDataSource="java:comp/env/jdbc/HrConnDS" LastUsedConfiguration="HrAppModuleShared"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+</BC4JConfig>

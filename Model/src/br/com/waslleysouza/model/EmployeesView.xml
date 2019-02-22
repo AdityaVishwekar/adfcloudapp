@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="EmployeesView"
+  Version="11.1.1.65.57"
+  InheritPersonalization="true"
+  SelectList="Employees.EMPLOYEE_ID, 
+       Employees.FIRST_NAME, 
+       Employees.LAST_NAME, 
+       Employees.EMAIL, 
+       Employees.PHONE_NUMBER, 
+       Employees.HIRE_DATE, 
+       Employees.JOB_ID, 
+       Employees.SALARY, 
+       Employees.COMMISSION_PCT, 
+       Employees.MANAGER_ID, 
+       Employees.DEPARTMENT_ID, 
+       Jobs.JOB_TITLE, 
+       Jobs.JOB_ID AS JOB_ID1"
+  FromList="EMPLOYEES Employees, JOBS Jobs"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  PageIterMode="Full"
+  UseGlueCode="false"
+  Where="Employees.JOB_ID = Jobs.JOB_ID">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|VarAccess"/>
+  </DesignTime>
+  <ViewAccessor
+    Name="JobsView1"
+    ViewObjectName="br.com.waslleysouza.model.JobsView"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_JobId"
+    ListVOName="JobsView1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="JobId"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="JobId"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="JobTitle"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <EntityUsage
+    Name="Employees"
+    Entity="br.com.waslleysouza.model.Employees"/>
+  <EntityUsage
+    Name="Jobs"
+    Entity="br.com.waslleysouza.model.Jobs"
+    Association="br.com.waslleysouza.model.EmpJobFkAssoc"
+    AssociationEnd="br.com.waslleysouza.model.EmpJobFkAssoc.Jobs"
+    SourceUsage="br.com.waslleysouza.model.EmployeesView.Employees"
+    ReadOnly="true"
+    Reference="true"
+    DeleteParticipant="false"
+    JoinType="INNER JOIN">
+    <DesignTime>
+      <AttrArray Name="_srcAttributes">
+        <Item Value="br.com.waslleysouza.model.Employees.JobId"/>
+      </AttrArray>
+      <AttrArray Name="_dstAttributes">
+        <Item Value="br.com.waslleysouza.model.Jobs.JobId"/>
+      </AttrArray>
+    </DesignTime>
+  </EntityUsage>
+  <ViewAttribute
+    Name="EmployeeId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="EmployeeId"
+    EntityUsage="Employees"
+    AliasName="EMPLOYEE_ID"/>
+  <ViewAttribute
+    Name="FirstName"
+    PrecisionRule="true"
+    EntityAttrName="FirstName"
+    EntityUsage="Employees"
+    AliasName="FIRST_NAME"/>
+  <ViewAttribute
+    Name="LastName"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="LastName"
+    EntityUsage="Employees"
+    AliasName="LAST_NAME"/>
+  <ViewAttribute
+    Name="Email"
+    IsUnique="true"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Email"
+    EntityUsage="Employees"
+    AliasName="EMAIL"/>
+  <ViewAttribute
+    Name="PhoneNumber"
+    PrecisionRule="true"
+    EntityAttrName="PhoneNumber"
+    EntityUsage="Employees"
+    AliasName="PHONE_NUMBER"/>
+  <ViewAttribute
+    Name="HireDate"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="HireDate"
+    EntityUsage="Employees"
+    AliasName="HIRE_DATE"/>
+  <ViewAttribute
+    Name="JobId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="JobId"
+    EntityUsage="Employees"
+    AliasName="JOB_ID"
+    LOVName="LOV_JobId">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Salary"
+    PrecisionRule="true"
+    EntityAttrName="Salary"
+    EntityUsage="Employees"
+    AliasName="SALARY"/>
+  <ViewAttribute
+    Name="CommissionPct"
+    PrecisionRule="true"
+    EntityAttrName="CommissionPct"
+    EntityUsage="Employees"
+    AliasName="COMMISSION_PCT"/>
+  <ViewAttribute
+    Name="ManagerId"
+    PrecisionRule="true"
+    EntityAttrName="ManagerId"
+    EntityUsage="Employees"
+    AliasName="MANAGER_ID"/>
+  <ViewAttribute
+    Name="DepartmentId"
+    PrecisionRule="true"
+    EntityAttrName="DepartmentId"
+    EntityUsage="Employees"
+    AliasName="DEPARTMENT_ID"/>
+  <ViewAttribute
+    Name="JobTitle"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="JobTitle"
+    EntityUsage="Jobs"
+    AliasName="JOB_TITLE"/>
+  <ViewAttribute
+    Name="JobId1"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="JobId"
+    EntityUsage="Jobs"
+    AliasName="JOB_ID1"/>
+  <AttrArray Name="KeyAttributes">
+    <Item Value="EmployeeId"/>
+  </AttrArray>
+  <ViewLinkAccessor
+    Name="EmployeesView"
+    ViewLink="br.com.waslleysouza.model.EmpManagerFkLink"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+</ViewObject>

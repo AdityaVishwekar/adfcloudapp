@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application"
+             version="11.1.1.65.57" id="DataBindings" SeparateXMLFiles="false"
+             Package="br.com.waslleysouza.view" ClientType="Generic">
+  <definitionFactories>
+    <factory nameSpace="http://xmlns.oracle.com/adf/controller/binding"
+             className="oracle.adf.controller.internal.binding.TaskFlowBindingDefFactoryImpl"/>
+    <dtfactory className="oracle.adf.controller.internal.dtrt.binding.BindingDTObjectFactory"/>
+  </definitionFactories>
+  <pageMap>
+    <page path="/WEB-INF/emp-flow.xml#emp-flow@Commit"
+          usageId="br_com_waslleysouza_view_emp_flow_emp_flow_CommitPageDef"/>
+    <page path="/WEB-INF/emp-flow.xml#emp-flow@Rollback"
+          usageId="br_com_waslleysouza_view_emp_flow_emp_flow_RollbackPageDef"/>
+    <page path="/empView.jsff"
+          usageId="br_com_waslleysouza_view_empViewPageDef"/>
+    <page path="/empEditView.jsff"
+          usageId="br_com_waslleysouza_view_empEditViewPageDef"/>
+    <page path="/index.jspx" usageId="br_com_waslleysouza_view_indexPageDef"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="br_com_waslleysouza_view_emp_flow_emp_flow_CommitPageDef"
+          path="br.com.waslleysouza.view.pageDefs.emp_flow_emp_flow_CommitPageDef"/>
+    <page id="br_com_waslleysouza_view_emp_flow_emp_flow_RollbackPageDef"
+          path="br.com.waslleysouza.view.pageDefs.emp_flow_emp_flow_RollbackPageDef"/>
+    <page id="br_com_waslleysouza_view_empViewPageDef"
+          path="br.com.waslleysouza.view.pageDefs.empViewPageDef"/>
+    <page id="br_com_waslleysouza_view_empEditViewPageDef"
+          path="br.com.waslleysouza.view.pageDefs.empEditViewPageDef"/>
+    <page id="br_com_waslleysouza_view_indexPageDef"
+          path="br.com.waslleysouza.view.pageDefs.indexPageDef"/>
+  </pageDefinitionUsages>
+  <dataControlUsages>
+    <BC4JDataControl id="HrAppModuleDataControl"
+                     Package="br.com.waslleysouza.model"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl"
+                     SupportsTransactions="true" SupportsFindMode="true"
+                     SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true"
+                     Configuration="HrAppModuleLocal" syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+  </dataControlUsages>
+</Application>

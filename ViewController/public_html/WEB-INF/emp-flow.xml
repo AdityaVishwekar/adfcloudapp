@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="emp-flow">
+    <default-activity id="__1">empView</default-activity>
+    <view id="empView">
+      <page>/empView.jsff</page>
+    </view>
+    <view id="empEditView">
+      <page>/empEditView.jsff</page>
+    </view>
+    <method-call id="Commit">
+      <method>#{bindings.Commit.execute}</method>
+      <outcome id="__10">
+        <fixed-outcome>done</fixed-outcome>
+      </outcome>
+    </method-call>
+    <method-call id="Rollback">
+      <method>#{bindings.Rollback.execute}</method>
+      <outcome id="__11">
+        <fixed-outcome>done</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__2">
+      <from-activity-id id="__3">empView</from-activity-id>
+      <control-flow-case id="__4">
+        <from-outcome id="__28">edit</from-outcome>
+        <to-activity-id id="__5">empEditView</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__6">
+      <from-activity-id id="__7">empEditView</from-activity-id>
+      <control-flow-case id="__9">
+        <from-outcome id="__29">view</from-outcome>
+        <to-activity-id id="__8">empView</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__12">
+        <from-outcome id="__26">commit</from-outcome>
+        <to-activity-id id="__13">Commit</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__19">
+        <from-outcome id="__27">rollback</from-outcome>
+        <to-activity-id id="__20">Rollback</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__14">
+      <from-activity-id id="__15">Commit</from-activity-id>
+      <control-flow-case id="__17">
+        <from-outcome id="__18">done</from-outcome>
+        <to-activity-id id="__16">empView</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__21">
+      <from-activity-id id="__22">Rollback</from-activity-id>
+      <control-flow-case id="__23">
+        <from-outcome id="__25">done</from-outcome>
+        <to-activity-id id="__24">empView</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>
